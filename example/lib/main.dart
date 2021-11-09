@@ -43,7 +43,8 @@ class MyHomePage extends StatelessWidget {
                   hintText: 'Hint',
                 ),
                 // onChanged: _onChanged,
-                priorityListByIsoCode: ['KE'],
+                priorityListByIsoCode: ['MY'],
+                initialValue: '+60103926683',
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.numeric(context),
                   FormBuilderValidators.required(context),

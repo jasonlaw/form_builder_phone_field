@@ -3,6 +3,8 @@ description: Example project for form_builder_phone_field
 
 version: 1.0.0+1
 
+publish_to: none
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
