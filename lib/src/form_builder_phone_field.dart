@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
 /// Field for international phone number input.
@@ -316,17 +317,16 @@ class _FormBuilderPhoneFieldState
   Future<void> _parsePhone() async {
     // print('initialValue: $initialValue');
     if (initialValue != null && initialValue!.isNotEmpty) {
-      _effectiveController.text = initialValue!;
-      //   try {
-      //     final parseResult = await PhoneNumberUtil().parse(initialValue!);
-      //     setState(() {
-      //       _selectedDialogCountry =
-      //           CountryPickerUtils.getCountryByPhoneCode(parseResult.countryCode);
-      //     });
-      //     _effectiveController.text = parseResult.nationalNumber;
-      //   } catch (error) {
-      //     _effectiveController.text = initialValue!.replaceFirst('+', '');
-      //   }
+      try {
+        final parseResult = await PhoneNumberUtil().parse(initialValue!);
+        setState(() {
+          _selectedDialogCountry =
+              CountryPickerUtils.getCountryByPhoneCode(parseResult.countryCode);
+        });
+        _effectiveController.text = parseResult.nationalNumber;
+      } catch (error) {
+        _effectiveController.text = initialValue!.replaceFirst('+', '');
+      }
     }
   }
 
